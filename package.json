@@ -1,0 +1,152 @@
+{
+	"name": "next-ts-app",
+	"version": "5.1.0",
+	"private": true,
+	"description": "Next TS App Template",
+	"keywords": [
+		"react",
+		"next-ts-app",
+		"typescript"
+	],
+	"bugs": {
+		"url": "https://github.com/timelessco/next-ts-app/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/timelessco/next-ts-app.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Timeless",
+		"email": "hello@timeless.co",
+		"url": "https://timeless.co/"
+	},
+	"type": "module",
+	"scripts": {
+		"build": "npx turbo run build:next",
+		"postbuild": "next-sitemap --config next-sitemap.config.cjs",
+		"build:analyze": "ANALYZE=true pnpm build && pnpm start",
+		"build:ci": "SKIP_ENV_VALIDATION=true next build",
+		"build:next": "next build",
+		"build:sourcemap": "SOURCEMAP=true pnpm build && source-map-explorer .next/static/**/*.js && pnpm start",
+		"build:start": "pnpm build && pnpm start",
+		"commit": "gacp",
+		"contributors:add": "all-contributors add",
+		"contributors:generate": "all-contributors generate",
+		"dev": "next dev",
+		"dev:sourcemap": "SOURCEMAP=true pnpm dev",
+		"format": "npx turbo run format:eslint format:css format:md format:prettier",
+		"format:css": "stylelint '**/*.css' --fix --cache --color -f verbose",
+		"format:eslint": "eslint --cache --report-unused-disable-directives --color . --fix",
+		"format:md": "markdownlint --fix **/*.md \".github/**/*.md\"",
+		"format:prettier": "prettier --write --cache --cache-location=.prettiercache --list-different --ignore-unknown .",
+		"lint": "npx turbo run lint:eslint lint:types lint:css lint:md lint:knip lint:package-json lint:spelling lint:prettier",
+		"lint:css": "stylelint '**/*.css' --cache --color -f verbose",
+		"lint:eslint": "eslint --cache --report-unused-disable-directives --color .",
+		"lint:knip": "knip --production",
+		"lint:md": "markdownlint **/*.md \".github/**/*.md\"",
+		"lint:package-json": "npmPkgJsonLint .",
+		"lint:prettier": "prettier --check --cache --cache-location=.prettiercache --ignore-unknown .",
+		"lint:spelling": "cspell --dot --gitignore --cache --no-progress check \"**/*\"",
+		"lint:types": "tsc --noEmit",
+		"populate:dictionary": "del-cli project-words.txt && cspell --words-only --unique --gitignore --cache --dot \"**/*\" | sort --ignore-case >> project-words.txt",
+		"prepare": "husky install",
+		"release": "node release-it/getCommitsSinceLastRelease.js && release-it --ci",
+		"release:dryrun": "release-it --dry-run",
+		"start": "next start",
+		"test": "echo \"no test specified\" && exit 0"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"lint-staged": {
+		"*": [
+			"pnpm format:prettier",
+			"pnpm lint:spelling"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"dependencies": {
+		"next": "13.4.9",
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "17.6.6",
+		"@commitlint/config-conventional": "17.6.6",
+		"@ianvs/prettier-plugin-sort-imports": "4.0.2",
+		"@next/bundle-analyzer": "13.4.9",
+		"@next/env": "13.4.9",
+		"@next/eslint-plugin-next": "13.4.9",
+		"@octokit/core": "4.2.4",
+		"@release-it/conventional-changelog": "6.0.0",
+		"@types/node": "18.16.19",
+		"@types/react": "18.2.14",
+		"@types/react-dom": "18.2.6",
+		"@typescript-eslint/experimental-utils": "5.61.0",
+		"all-contributors-cli": "6.26.0",
+		"autoprefixer": "10.4.14",
+		"cspell": "6.31.1",
+		"dedent": "0.7.0",
+		"del-cli": "5.0.0",
+		"dotenv": "16.3.1",
+		"eslint": "8.44.0",
+		"eslint-config-canonical": "41.0.5",
+		"eslint-config-prettier": "8.8.0",
+		"eslint-plugin-jsonc": "2.9.0",
+		"eslint-plugin-tailwindcss": "3.13.0",
+		"eslint-plugin-toml": "0.5.0",
+		"eslint-plugin-yml": "1.8.0",
+		"execa": "7.1.1",
+		"gacp": "3.0.3",
+		"git-remote-origin-url": "4.0.0",
+		"git-url-parse": "13.1.0",
+		"husky": "8.0.3",
+		"jsonc-eslint-parser": "2.3.0",
+		"knip": "2.14.3",
+		"lint-staged": "13.2.3",
+		"markdownlint": "0.29.0",
+		"markdownlint-cli": "0.35.0",
+		"next-sitemap": "4.1.8",
+		"npm-package-json-lint": "7.0.0",
+		"npm-package-json-lint-config-default": "6.0.0",
+		"postcss": "8.4.25",
+		"prettier": "3.0.0",
+		"prettier-plugin-packagejson": "2.4.4",
+		"prettier-plugin-tailwindcss": "0.3.0",
+		"release-it": "16.0.0",
+		"sharp": "0.32.1",
+		"source-map-explorer": "2.5.3",
+		"stylelint": "15.10.1",
+		"stylelint-config-clean-order": "5.0.1",
+		"stylelint-config-standard": "34.0.0",
+		"tailwindcss": "3.3.2",
+		"tilg": "0.1.1",
+		"title-case": "3.0.3",
+		"toml-eslint-parser": "0.6.0",
+		"turbo": "1.10.7",
+		"typescript": "5.1.6",
+		"yaml-eslint-parser": "1.2.2",
+		"zod": "3.21.4"
+	},
+	"packageManager": "pnpm@8.6.6",
+	"gacp": {
+		"add": false,
+		"push": false,
+		"emoji": "emoji",
+		"editor": false
+	}
+}
